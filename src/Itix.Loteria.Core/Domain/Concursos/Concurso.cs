@@ -8,32 +8,32 @@ namespace Itix.Loteria.Core.Domain.Concursos
 {
     public class Concurso
     {
-        public virtual int IdConcurso { get; protected set; }
+        public virtual int IdConcurso { get;  set; }
 
-        public virtual int IdJogo { get; protected set; }
+        public virtual int IdJogo { get;  set; }
 
-        public virtual int Codigo { get; protected set; }
+        public virtual int Codigo { get;  set; }
 
-        public virtual EnumStatusConcurso Status { get; protected set; }
+        public virtual EnumStatusConcurso Status { get;  set; }
 
-        public Concurso(int idConcurso, IJogo jogo, int codigo)
-        {
-            Assegure.Que(idConcurso > 0, "idConcurso inválido");
+        //public Concurso(int idConcurso, IJogo jogo, int codigo)
+        //{
+        //    Assegure.Que(idConcurso > 0, "idConcurso inválido");
 
-            Assegure.NaoNulo(jogo, "Jogo não informado");
+        //    Assegure.NaoNulo(jogo, "Jogo não informado");
 
-            Assegure.Que(codigo > 0, "Codigo inválido");
+        //    Assegure.Que(codigo > 0, "Codigo inválido");
 
 
-            this.IdConcurso = idConcurso;
+        //    this.IdConcurso = idConcurso;
 
-            this.IdJogo = jogo.IdJogo;
+        //    this.IdJogo = jogo.IdJogo;
 
-            this.Codigo = codigo;
+        //    this.Codigo = codigo;
 
-            this.Status = EnumStatusConcurso.ABT;
+        //    this.Status = EnumStatusConcurso.ABT;
 
-        }
+        //}
     }
 
 

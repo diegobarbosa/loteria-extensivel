@@ -15,6 +15,14 @@ namespace Itix.Loteria.Core.Domain.Jogos
         JogoTipoStatus Status { get; }
 
         string Descricao { get; }
+
+
+
+        void ValidarVolante<IVol>(IVol volante);
+
+        IAcer1 ApostaVencedora<IVol1, IResult1, IAcer1>(IResult1 resultado, IVol1 volante) where IAcer1 : class;
+
+
     }
 
     public enum JogoTipoStatus

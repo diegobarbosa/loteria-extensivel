@@ -18,14 +18,17 @@ namespace Itix.Loteria.Core.Domain.Apostas
 
         public virtual DateTime DataOcorrencia { get; protected set; }
 
+        public virtual string Jogador { get; protected set; }
+
         public virtual IVolante Volante { get; protected set; }
 
 
-        protected Aposta(
+        public Aposta(
             int idAposta,
             Concurso concurso,
             IJogo jogo,
             DateTime dataOcorrencia,
+            string jogador,
             IVolante volante
             )
         {
@@ -40,6 +43,9 @@ namespace Itix.Loteria.Core.Domain.Apostas
             Assegure.NaoNulo(volante, "Informe o volante");
 
 
+            jogo.ValidarVolante(volante);
+
+
             this.IdAposta = idAposta;
 
             this.IdConcurso = concurso.IdConcurso;
@@ -47,6 +53,8 @@ namespace Itix.Loteria.Core.Domain.Apostas
             this.IdJogo = jogo.IdJogo;
 
             this.DataOcorrencia = dataOcorrencia;
+
+            this.Jogador = jogador;
 
             this.Volante = volante;
 
