@@ -1,0 +1,86 @@
+
+# Jogo
+	- IdJogo
+	- CodigoWeb
+	- Nome 
+	- Status : ATV, CANC
+	- Descricao
+	#@ Regras 
+		- 60 numeros
+		- Seleciona 6
+		- Vence 6, 5, 4 acertos
+	
+# JogoRepo
+	- GetTodos()
+	- ByCodigoWeb()
+	- ByIdJogo()
+
+============================================
+# Concurso
+	- IdConcurso
+	- IdJogo
+	- Codigo
+	- Status: Aberto | Concluido
+	- Vencedores
+		- Nome, IdJogo
+	
+	#@Resultado 
+	
+
+# ConcursoRepo
+	- GetTodos()
+	- GetAtualByIdJogo()
+	- GetByIdConcurso()
+	
+============================================
+	
+# Aposta
+	- IdAposta
+	- IdConcurso
+	- IdJogo
+	- Data
+	#@ Volante
+		- 6 numeros selecionados
+	
+# ApostaRepo
+	- GetTodos()
+	- ByIdAposta()
+	- ByIdJogo()
+============================================
+
+// Classe Genérica	
+# MaquinaDeNumerosAleatorios
+	- List<int> Sortear(TotalDeNumeros, quantidadeParaSortear)
+	
+
+============================================
+
+
+# ProcessarConcursoService
+	- Executar(int idConcurso)
+
+
+
+
+============================================
+
+#Fluxo
+
+- Lista os jogos disponíveis: Mega Sena, Sena, LotoMania
+	- O usuário seleciona um jogo
+	- O sistema abre a tela com jogo
+	- O usuário faz quantas apostas desejar, preenchendo N volantes
+	- O usuário conclui as apostas
+	
+- Sorteio: Página do Sorteio
+	- Botão para Executar o Sorteio
+	- Listar os vencedores
+ 
+	
+	
+	
+	
+	
+	
+	
+	
