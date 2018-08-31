@@ -21,11 +21,4 @@
     <PackageReference Include="SimpleInjector.Integration.AspNetCore.Mvc" Version="4.3.0" />
   </ItemGroup>
 
-
-
-
-  <ItemGroup>
-    <Folder Include="Domain\" />
-  </ItemGroup>
-
 </Project>

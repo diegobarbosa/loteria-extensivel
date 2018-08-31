@@ -137,6 +137,13 @@ namespace Itix.Agenda.Core.Infra.Utils
                 throw new DomainException(message());
         }
 
+        public static void EhDataValida(DateTime dateTime, Func<string> message = null)
+        {
+            if (dateTime == DateTime.MinValue)
+            {
+                throw new DomainException(message());
+            }
+        }
 
 
 

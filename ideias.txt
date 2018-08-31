@@ -54,10 +54,15 @@ IJogoProcessor
 	- IdJogo
 	- Codigo
 	- Status: Aberto | Concluido
-	- Vencedores
-		- Nome, IdJogo
-	
+		
 	#@Resultado 
+
+
+# ConcursoVencedores
+	- IdConcursoVencedor
+	- IdConcurso
+	- IdAposta
+	- #@Acerto
 	
 
 # ConcursoRepo
@@ -111,7 +116,11 @@ new Aposta(jogo, concurso, IVoltante)
 	var resultado = MaquinaDeNumerosAleatorios.Executar(jogo...)
 	
 	
-	var vencedores = apostas.where(aposta=> jogo.apostaVencedora(aposta)).ToList()
+	var vencedores = apostas
+					.where(aposta => jogo.apostaVencedora(resultado, aposta.volante))
+					.where(acerto => acerto != null)
+					.select(acerto => new ConcursoVencedor() )
+					.ToList()
 	
 	concurso.finalizar(vencedores) 
 		status = finalizado
@@ -134,9 +143,34 @@ new Aposta(jogo, concurso, IVoltante)
 	- Botão para Executar o Sorteio
 	- Listar os vencedores
  
+
+============================================
+# Serviços
+	- FinalizarApostas // template method, um para cada jogo
+	- ListarJogos      // global
+	- RetornarJogo 	   // global
+	- JogoProcessor    // template method, um para cada jogo
 	
-	
-	
+============================================
+
+# FinalizarApostas
+	Command
+		- IdConcurso
+		- Usuario
+		- Volante: object, json
+		
+		new Aposta(concurso, jogo, usuario, volante)
+			
+			jogo.ValidarVolante(volante)
+			
+			this.IdConcurso = concurso.idConcurso
+			this.IdJogo = jogo.IdJogo
+			this.Volante = volante
+		
+============================================
+
+
+
 	
 	
 	
