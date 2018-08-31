@@ -1,14 +1,47 @@
 
-# Jogo
+IRegras
+	- ValidarVolante(IVolante)
+	- EhApostaVencedora(IResultado, IVolante)
+	
+
+IResultado
+IVolante
+IJogoProcessor
+
+
+===========================================
+# Jogo<IVolante,IResultado> // Single table inheritance
 	- IdJogo
 	- CodigoWeb
 	- Nome 
 	- Status : ATV, CANC
 	- Descricao
-	#@ Regras 
+	
+	
+	- ValidarVolante(IVolante) // pensar em algo de reflection para volante e resultado
+	- EhApostaVencedora(IResultado, IVolante)
+	
+	
+	#@ Regras // uma classe para cada jogo, não precisa estar na classe base
 		- 60 numeros
 		- Seleciona 6
 		- Vence 6, 5, 4 acertos
+	
+
+	public class SenaJogo<SenaJogo.Volante, Sena.Resultado> : Jogo
+	{
+		- ValidarVolante(IVolante) // pensar em algo de reflection para volante e resultado
+		- EhApostaVencedora(IResultado, IVolante)
+	
+	
+		#@ Regras // uma classe para cada jogo, não precisa estar na classe base
+			- 60 numeros
+			- Seleciona 6
+			- Vence 6, 5, 4 acertos
+	
+	}
+	
+	
 	
 # JogoRepo
 	- GetTodos()
@@ -41,6 +74,12 @@
 	- Data
 	#@ Volante
 		- 6 numeros selecionados
+		
+new Aposta(jogo, concurso, IVoltante)
+{
+	jogo.ValidarVolante(ivolante)
+}
+		
 	
 # ApostaRepo
 	- GetTodos()
@@ -58,9 +97,28 @@
 
 # ProcessarConcursoService
 	- Executar(int idConcurso)
+	
+# JogoProcessorFactory // usa reflection
+	- Build(concurso)
 
+	Cria: 
+	
+# SenaProcessor
+	- Executar(concurso)
+	
+	var apostas = apostasRepoByIdConcurso(concurso.idConcurso)
+	var jogo = jogoRepo.ByIdJogo(concurso.idJogo)
+	var resultado = MaquinaDeNumerosAleatorios.Executar(jogo...)
+	
+	
+	var vencedores = apostas.where(aposta=> jogo.apostaVencedora(aposta)).ToList()
+	
+	concurso.finalizar(vencedores) 
+		status = finalizado
+		vencedores = ...
 
-
+# LotoManiaProcessor
+	- Executar(concurso)
 
 ============================================
 
