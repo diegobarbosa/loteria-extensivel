@@ -16,9 +16,11 @@ Termos e seus significados:
 - Concurso: Cada aposta é vinculada a um concurso cujo sorteio ocerrá em um dia pré definido
 
 ## Pontos de extensão
-Para adicionar um novo jogo basta implementar a classe abstrata JogoBase e seus dois métodos, ApostaVencedoraTemplate 
+Para adicionar um novo Jogo basta implementar a classe abstrata JogoBase e seus dois métodos, ApostaVencedoraTemplate 
 (Indica se um Volante (aposta) é vencedor retornando um IAcerto, caso contrário (não é vencedor) retorna null) 
 e  ValidarVolanteTemplate (valida se um volante informado pelo jogador é valido).
+
+JogoBase implementa a interface IJogo que tem como objetivo ser o ponto central da abstração no sistema.
 
 Implementar as interfaces:
 - IResultado: Resultado de um concurso 
