@@ -3,6 +3,7 @@ using Itix.Loteria.Core.Domain.Apostas;
 using Itix.Loteria.Core.Domain.Concursos;
 using Itix.Loteria.Core.Domain.Jogos.Core;
 using Itix.Loteria.Core.Domain.Servicos;
+using Itix.Loteria.Core.Domain.Servicos.ProcessarConcursos;
 using SimpleInjector;
 using System;
 using System.Collections.Generic;
@@ -18,11 +19,19 @@ namespace Itix.Loteria.Core.Domain
 
             container.RegisterSingleton<IConcursoRepo, ConcursoRepo>();
 
-            container.RegisterSingleton<IConcursoVencedorRepo, VencedorDoConcursoRepo>();
 
             container.RegisterSingleton<IJogoRepo, JogoRepo>();
 
             container.RegisterSingleton<ISequenceGenerator, SequenceGenerator>();
+
+            container.RegisterSingleton<IFinalizarApostasService, FinalizarApostasService>();
+
+            container.RegisterSingleton<IProcessarConcursoService, ProcessarConcursoService>();
+
+            container.RegisterSingleton<IMaquinaDeNumerosAleatorios, MaquinaDeNumerosAleatorios>();
+
+
+            container.RegisterSingleton<IResultadoService, ResultadoService>();
         }
     }
 }

@@ -9,7 +9,12 @@ using System.Text;
 
 namespace Itix.Loteria.Core.Domain.Servicos.ProcessarConcursos
 {
-    public class ProcessarConcursoService
+    public interface IProcessarConcursoService
+    {
+        void Executar(int idConcurso);
+    }
+
+    public class ProcessarConcursoService : IProcessarConcursoService
     {
         IConcursoRepo concursoRepo;
 

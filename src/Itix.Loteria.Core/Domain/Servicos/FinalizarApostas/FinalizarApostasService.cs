@@ -8,7 +8,12 @@ using System.Text;
 
 namespace Itix.Loteria.Core.Domain.Servicos
 {
-    public class FinalizarApostasService
+    public interface IFinalizarApostasService
+    {
+        void Executar(FinalizarApostasService.Command command);
+    }
+
+    public class FinalizarApostasService : IFinalizarApostasService
     {
         IConcursoRepo concursoRepo;
 
@@ -37,19 +42,21 @@ namespace Itix.Loteria.Core.Domain.Servicos
         public void Executar(Command command)
         {
 
-            Assegure.Que(command.IdJogo > 0, "Informe o Jogo");
+            Assegure.Que(command.IdConcurso > 0, "Informe o Concurso");
 
             Assegure.NaoNulo(command.Apostas, "Nenhuma Aposta");
 
+            Assegure.Que(command.Apostas.Count > 0, "Informe pelo menos uma aposta");
 
-            var concurso = concursoRepo.AtivoByIdJogo(command.IdJogo);
+
+            var concurso = concursoRepo.AtivoByIdConcurso(command.IdConcurso);
 
             Assegure.NaoNulo(concurso, "Concurso não encontrado");
 
 
-            var jogo = jogoRepo.GetByIdJogo(command.IdJogo);
+            var jogo = jogoRepo.GetByIdJogo(concurso.IdJogo);
 
-           
+
 
             var dataOcorrencia = DateTime.Now;
             var type = typeof(Aposta);
@@ -78,7 +85,7 @@ namespace Itix.Loteria.Core.Domain.Servicos
 
         public class Command
         {
-            public int IdJogo { get; set; }
+            public int IdConcurso { get; set; }
 
             public List<ApostaDto> Apostas { get; set; }
 

@@ -12,35 +12,48 @@ namespace Itix.Loteria.Core.Domain.Apostas
         Aposta ByIdAposta(int idAposta);
 
         List<Aposta> ByIdConcurso(int idConcurso);
+
+        List<Aposta> VencedoresByIdConcurso(int idConcurso);
     }
 
     public class ApostaRepo : IApostaRepo
     {
-        List<Aposta> apostas = new List<Aposta>();
+        public static List<Aposta> Apostas = new List<Aposta>();
 
         public List<Aposta> GetTodos()
         {
-            return apostas;
+            return Apostas;
         }
 
         public void Insert(Aposta aposta)
         {
-            apostas.Add(aposta);
+            Apostas.Add(aposta);
         }
 
         public Aposta ByIdAposta(int idAposta)
         {
-            return apostas
+            return Apostas
                 .SingleOrDefault(x => x.IdAposta == idAposta);
         }
 
         public List<Aposta> ByIdConcurso(int idConcurso)
         {
-            return apostas
+            return Apostas
                 .Where(x => x.IdConcurso == idConcurso)
                 .ToList();
         }
 
+        public List<Aposta> VencedoresByIdConcurso(int idConcurso)
+        {
+            return (from aposta in ApostaRepo.Apostas
+                    where
+                       aposta.IdConcurso == idConcurso
+                    && aposta.AcertoStatus == StatusAcerto.VENC
+
+                    select aposta)
+
+                    .ToList();
+        }
     }
 
 }

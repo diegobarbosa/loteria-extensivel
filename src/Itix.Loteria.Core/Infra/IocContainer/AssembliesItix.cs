@@ -20,9 +20,9 @@ namespace Itix.Agenda.Core.Infra.IocContainer
         private List<string> appAssemblyesNames;
 
 
-        public const string CoreAssemblyName = "Itix.Agenda.Core";
+        public const string CoreAssemblyName = "Itix.Loteria.Core";
 
-        private const string SiteAssemblyName = "Itix.Agenda.UI";
+        private const string SiteAssemblyName = "Itix.Loteria.UI";
 
 
         IAppDomainAdapter appDomainAdapter;

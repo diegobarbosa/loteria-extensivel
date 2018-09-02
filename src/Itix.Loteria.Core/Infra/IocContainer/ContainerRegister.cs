@@ -60,7 +60,7 @@ namespace Itix.Agenda.Core.Infra.IocContainer
         
            
 
-            container.Register<IContainer>(() => StaticContainer.Container);
+            container.RegisterSingleton<IContainer>(() => StaticContainer.Container);
 
 
             // Allow Simple Injector to resolve services from ASP.NET Core.
