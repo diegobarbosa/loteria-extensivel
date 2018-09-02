@@ -18,7 +18,7 @@ namespace Itix.Loteria.Core.Domain
 
             container.RegisterSingleton<IConcursoRepo, ConcursoRepo>();
 
-            container.RegisterSingleton<IConcursoVencedorRepo, ConcursoVencedorRepo>();
+            container.RegisterSingleton<IConcursoVencedorRepo, VencedorDoConcursoRepo>();
 
             container.RegisterSingleton<IJogoRepo, JogoRepo>();
 

@@ -9,6 +9,11 @@ namespace Itix.Loteria.Core.Domain.Jogos.MegaSena
     {
         public class Resultado : IResultado
         {
+            public Resultado(List<int> numerosSorteados)
+            {
+                this.NumerosSorteados = numerosSorteados;
+            }
+
             public List<int> NumerosSorteados { get; protected set; }
         }
     }

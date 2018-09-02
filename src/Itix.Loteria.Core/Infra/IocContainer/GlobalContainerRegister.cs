@@ -10,12 +10,14 @@ namespace Itix.Agenda.Core.Infra.IocContainer
         public override void Register(Container container)
         {
 
-            //IAppDomainAdapter
+           
             container.Register<IAppDomainAdapter, AppDomainAdapter>();
+
 
             container.RegisterSingleton<IAssembliesItix, AssembliesItix>();
 
-
         }
+
     }
+
 }

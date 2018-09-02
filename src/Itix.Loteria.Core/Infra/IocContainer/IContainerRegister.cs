@@ -13,5 +13,10 @@ namespace Itix.Agenda.Core.Infra.IocContainer
 
         public abstract void Register(Container container);
 
+        public virtual void OnRegisterCompleted(Container container)
+        {
+
+        }
+
     }
 }

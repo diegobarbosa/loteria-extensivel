@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Itix.Loteria.Core.Domain.Jogos.Core;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -18,9 +19,9 @@ namespace Itix.Loteria.Core.Domain.Jogos
 
 
 
-        void ValidarVolante<IVol>(IVol volante);
+        void ValidarVolante(IVolante volante);
 
-        IAcer1 ApostaVencedora<IVol1, IResult1, IAcer1>(IResult1 resultado, IVol1 volante) where IAcer1 : class;
+        IAcerto ComputarAposta(IResultado resultado, IVolante volante);
 
 
     }

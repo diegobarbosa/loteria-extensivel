@@ -42,7 +42,7 @@ namespace Itix.Loteria.Core.Domain.Servicos
             Assegure.NaoNulo(command.Apostas, "Nenhuma Aposta");
 
 
-            var concurso = concursoRepo.Ativo(command.IdJogo);
+            var concurso = concursoRepo.AtivoByIdJogo(command.IdJogo);
 
             Assegure.NaoNulo(concurso, "Concurso não encontrado");
 
@@ -52,11 +52,11 @@ namespace Itix.Loteria.Core.Domain.Servicos
            
 
             var dataOcorrencia = DateTime.Now;
-
+            var type = typeof(Aposta);
 
             foreach (var apostaDto in command.Apostas)
             {
-                var idAposta = sequenceGenerator.NextIdFor(typeof(Aposta));
+                var idAposta = sequenceGenerator.NextIdFor(type);
 
                 var newAposta = new Aposta(
                              idAposta,

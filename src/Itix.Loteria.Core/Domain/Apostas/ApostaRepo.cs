@@ -10,9 +10,11 @@ namespace Itix.Loteria.Core.Domain.Apostas
         void Insert(Aposta aposta);
 
         Aposta ByIdAposta(int idAposta);
+
+        List<Aposta> ByIdConcurso(int idConcurso);
     }
 
-    public class ApostaRepo: IApostaRepo
+    public class ApostaRepo : IApostaRepo
     {
         List<Aposta> apostas = new List<Aposta>();
 
@@ -20,7 +22,7 @@ namespace Itix.Loteria.Core.Domain.Apostas
         {
             return apostas;
         }
-        
+
         public void Insert(Aposta aposta)
         {
             apostas.Add(aposta);
@@ -32,14 +34,13 @@ namespace Itix.Loteria.Core.Domain.Apostas
                 .SingleOrDefault(x => x.IdAposta == idAposta);
         }
 
-        //public List<Aposta> ByIdJogo(int idJogo)
-        //{
-        //    return apostas
-        //        .SingleOrDefault(x => x.IdAposta == idAposta);
-        //}
+        public List<Aposta> ByIdConcurso(int idConcurso)
+        {
+            return apostas
+                .Where(x => x.IdConcurso == idConcurso)
+                .ToList();
+        }
 
-
-
-	
     }
+
 }

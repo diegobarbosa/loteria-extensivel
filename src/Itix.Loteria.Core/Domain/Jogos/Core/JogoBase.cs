@@ -29,14 +29,15 @@ namespace Itix.Loteria.Core.Domain.Jogos
         protected abstract void ValidarVolanteTemplate(IVol volante);
 
 
-        public void ValidarVolante<IVol1>(IVol1 volante)
+        public void ValidarVolante(IVolante volante)
         {
             this.ValidarVolanteTemplate(volante as IVol);
         }
 
-        public IAcer1 ApostaVencedora<IVol1, IResult1, IAcer1>(IResult1 resultado, IVol1 volante) where IAcer1 : class
+
+        public IAcerto ComputarAposta(IResultado resultado, IVolante volante)
         {
-            return this.ApostaVencedoraTemplate(resultado as IResult, volante as IVol) as IAcer1;
+            return this.ApostaVencedoraTemplate(resultado as IResult, volante as IVol);
         }
 
         protected JogoBase()

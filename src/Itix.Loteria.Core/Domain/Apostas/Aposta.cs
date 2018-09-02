@@ -22,15 +22,26 @@ namespace Itix.Loteria.Core.Domain.Apostas
 
         public virtual IVolante Volante { get; protected set; }
 
+        public virtual IAcerto Acerto { get; protected set; }
+
+        public virtual StatusAcerto AcertoStatus { get; protected set; }
+
+        public virtual StatusProcessamentoAposta StatusProcessamento { get; protected set; }
+
+        public virtual DateTime? DataComputou { get; protected set; }
+
+
+
+
 
         public Aposta(
-            int idAposta,
-            Concurso concurso,
-            IJogo jogo,
-            DateTime dataOcorrencia,
-            string jogador,
-            IVolante volante
-            )
+                int idAposta,
+                Concurso concurso,
+                IJogo jogo,
+                DateTime dataOcorrencia,
+                string jogador,
+                IVolante volante
+                )
         {
             Assegure.Que(idAposta > 0, "idAposta inválida");
 
@@ -58,12 +69,44 @@ namespace Itix.Loteria.Core.Domain.Apostas
 
             this.Volante = volante;
 
+            this.StatusProcessamento = StatusProcessamentoAposta.FEITA;
+
+            this.AcertoStatus = StatusAcerto.INIC;
 
         }
 
+        public virtual void ComputarResultado(DateTime dataComputou, IResultado resultado, IJogo jogo)
+        {
+            Assegure.Que(this.IdJogo == jogo.IdJogo, "Jogo inválido");
+
+            Assegure.NaoNulo(resultado, "Informe o resultado");
+
+            Assegure.NaoNulo(jogo, "Informe o jogo");
 
 
+            this.Acerto = jogo.ComputarAposta(resultado, Volante);
+
+            this.AcertoStatus = this.Acerto == null ? StatusAcerto.ERR : StatusAcerto.VENC;
 
 
+            this.StatusProcessamento = StatusProcessamentoAposta.COMP;
+
+            this.DataComputou = dataComputou;
+        }
+
+
+    }
+
+    public enum StatusProcessamentoAposta
+    {
+        FEITA,
+        COMP
+    }
+
+    public enum StatusAcerto
+    {
+        INIC,
+        VENC,
+        ERR
     }
 }

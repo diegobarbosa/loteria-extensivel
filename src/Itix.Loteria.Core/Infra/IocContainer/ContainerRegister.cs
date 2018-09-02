@@ -14,6 +14,7 @@ using System.Threading.Tasks;
 using System;
 using System.Linq;
 using System.Reflection;
+using Itix.Loteria.Core.Infra.IocContainer;
 
 namespace Itix.Agenda.Core.Infra.IocContainer
 {
@@ -56,9 +57,8 @@ namespace Itix.Agenda.Core.Infra.IocContainer
             container.RegisterMvcControllers(app);
             container.RegisterMvcViewComponents(app);
 
-            // Add application services. For instance:
-            //container.Register<IUserService, UserService>(Lifestyle.Scoped);
-            RegistrarTodosOsModulos(container);
+        
+           
 
             container.Register<IContainer>(() => StaticContainer.Container);
 
@@ -66,7 +66,9 @@ namespace Itix.Agenda.Core.Infra.IocContainer
             // Allow Simple Injector to resolve services from ASP.NET Core.
             container.AutoCrossWireAspNetComponents(app);
 
-          
+
+            RegistrarTodosOsModulos(container);
+
 
 
             container.Verify();
@@ -77,20 +79,20 @@ namespace Itix.Agenda.Core.Infra.IocContainer
         {
             var assemblies = new AssembliesItix();
 
+            var reflectionUtils = new ReflectionUtils();
 
-            var type = typeof(IContainerRegister);
-            var types = assemblies.GetAssemblies()
-                .SelectMany(s => s.GetTypes())
-                .Where(p => type.IsAssignableFrom(p) && p.IsClass && !p.IsAbstract);
+           var containerRegister= reflectionUtils
+                .AllImplementationsFrom<IContainerRegister>(assemblies.GetAssemblies())
+                .Select(type => (Activator.CreateInstance(type) as IContainerRegister))
+                .Select(register => { register.Assemblies = assemblies; return register; })
+                .ToList();
 
 
-            foreach (var item in types)
-            {
-                var containerRegister = (Activator.CreateInstance(item) as IContainerRegister);
-                containerRegister.Assemblies = assemblies;
+            containerRegister.ForEach(x => x.Register(container));
 
-                containerRegister.Register(container);
-            }
+
+            containerRegister.ForEach(x => x.OnRegisterCompleted(container));
+
         }
 
 

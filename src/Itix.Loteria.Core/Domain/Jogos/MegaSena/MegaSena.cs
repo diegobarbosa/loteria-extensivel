@@ -32,6 +32,11 @@ namespace Itix.Loteria.Core.Domain.Jogos.MegaSena
 
         protected override Acerto ApostaVencedoraTemplate(Resultado resultado, Volante volante)
         {
+            Assegure.NaoNulo(resultado, "Informe o resultado");
+
+            Assegure.NaoNulo(volante, "Informe o volante");
+
+
             var intersect = volante.NumerosSelecionados.Intersect(resultado.NumerosSorteados).ToList();
 
             if (intersect.Count() == 6
