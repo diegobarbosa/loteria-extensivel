@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
     <TypeScriptToolsVersion>2.8</TypeScriptToolsVersion>
+	 <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked> 
   </PropertyGroup>
 
   
@@ -21,5 +22,11 @@
   <ItemGroup>
     <ProjectReference Include="..\Itix.Loteria.Core\Itix.Loteria.Core.csproj" />
   </ItemGroup>
+  
+   <ItemGroup>
+     
+  </ItemGroup>
+  
+
 
 </Project>

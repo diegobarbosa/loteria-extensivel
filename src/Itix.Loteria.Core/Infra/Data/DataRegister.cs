@@ -11,9 +11,9 @@ namespace Itix.Agenda.Core.Infra.Data
     {
         public override void Register(SimpleInjector.Container container)
         {
-            container.Register<IUnitOfWork, NHUnitOfWork>(Lifestyle.Scoped);
+            //container.Register<IUnitOfWork, NHUnitOfWork>(Lifestyle.Scoped);
 
-            NHSessionFactory.Configure();
+            //NHSessionFactory.Configure();
         }
     }
 }
