@@ -4,12 +4,10 @@
     <TargetFramework>netcoreapp2.0</TargetFramework>
     <TypeScriptToolsVersion>2.8</TypeScriptToolsVersion>
 	 <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked> 
+	 <DefaultItemExcludes>$(DefaultItemExcludes);ClientApp\node_modules\**</DefaultItemExcludes>    
   </PropertyGroup>
 
   
-
-
- 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.8" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.3" />
@@ -23,10 +21,9 @@
     <ProjectReference Include="..\Itix.Loteria.Core\Itix.Loteria.Core.csproj" />
   </ItemGroup>
   
-   <ItemGroup>
-     
-  </ItemGroup>
   
 
+  
+  
 
 </Project>

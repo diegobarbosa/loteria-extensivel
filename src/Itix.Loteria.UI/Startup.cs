@@ -9,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Itix.Agenda.Core.Infra;
 using Itix.Agenda.Core.Infra.IocContainer;
+using AngularCliAspNetCore.Services;
 
 namespace Itix.Agenda
 {
@@ -48,6 +49,8 @@ namespace Itix.Agenda
             {
                 app.UseBrowserLink();
                 app.UseDeveloperExceptionPage();
+
+                app.Shell("npm start --prefix ClientApp");
             }
             else
             {
