@@ -1,0 +1,27 @@
+.numero {
+  
+  margin: 10px;
+  display: inline-block;
+ 
+}
+
+.numero a {
+  background-color: #adc0c4;
+  border-radius: 186px;
+  color: #fff;
+  cursor: pointer;
+  display: block;
+  font-family: futuraBold;
+  font-size: 21px;
+  line-height: 57px;
+  padding: 0;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  width: 57px;
+}
+
+
+.selecionado {
+  background-color: #005fa1 !important;
+}

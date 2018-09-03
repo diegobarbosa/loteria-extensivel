@@ -14,19 +14,25 @@ import { ConcursosService } from './Services/ConcursosService';
 import { HttpClientModule } from '@angular/common/http';
 import { MegaSenaComponent } from './Jogos/mega-sena/mega-sena.component'; 
 
+import { GeradorDeNumeros } from './Services/GeradorDeNumeros';
+import { NumeroComponent } from './jogos/numero/numero.component';
+import { NumeroListaComponent } from './jogos/numero-lista/numero-lista.component';
+
 @NgModule({
   declarations: [
     AppComponent,
     JogoListaComponent,
     JogoListaItemComponent,
-    MegaSenaComponent
+    MegaSenaComponent,
+    NumeroComponent,
+    NumeroListaComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [JogosService, ConcursosService],
+  providers: [JogosService, ConcursosService, GeradorDeNumeros],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
