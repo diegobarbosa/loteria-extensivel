@@ -1,5 +1,5 @@
-## Itix Loteria
-Desafio Itix: Mini sistema de Loteria extensível tendo a possíbilidade de adicionar novos jogos: TimeMania, LotoFácil, Sena, Quina ...
+## Loteria Extensível
+Mini sistema de Loteria extensível tendo a possíbilidade de adicionar novos jogos: TimeMania, LotoFácil, Sena, Quina ...
 
 ## Tecnologias:
 - Asp.Net Core
